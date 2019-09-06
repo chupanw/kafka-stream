@@ -6,6 +6,7 @@ import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.kstream.KStream;
+import org.apache.kafka.streams.processor.WallclockTimestampExtractor;
 
 import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
@@ -13,8 +14,9 @@ import java.util.concurrent.CountDownLatch;
 public class LineSplit {
     public static void main(String[] args) throws Exception {
         Properties props = new Properties();
-        props.put(StreamsConfig.APPLICATION_ID_CONFIG, "LineSplit-<andrewID>");
-        props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "jenkins-vbc.isri.cmu.edu:9092");
+        props.put(StreamsConfig.APPLICATION_ID_CONFIG, "test");
+        props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        props.put(StreamsConfig.DEFAULT_TIMESTAMP_EXTRACTOR_CLASS_CONFIG, WallclockTimestampExtractor.class);
         props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
         props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
 
